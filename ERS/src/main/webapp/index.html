@@ -43,6 +43,15 @@ h4 {
 .wrapper {
     text-align: center;
 }
+
+.btn {
+background :#40e0d0
+}
+
+.btn-primary {
+    background: #40e0d0;
+    color: #ffffff;
+}
 	
 	</style>
 	
@@ -70,15 +79,15 @@ h4 {
   <div id="login" >
     <div class="row">
         <div class="col-md-offset-5 col-md-3">
-            <div class="form-login">
-            <h4>Welcome back.</h4>
-            <input type="text" ng-model="username" id="userName" class="form-control input-sm chat-input" placeholder="username" />
+            <div class="form-login form-group">
+            <h4>Login</h4>
+            <input type="text" ng-model="username" id="userName" class="form-control input-sm chat-input" placeholder="Username"/>
             </br>
-            <input type="text" ng-model="password" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
+            <input onfocus="makePasswordHidden()" class="form-control input-sm chat-input" placeholder="Password" type="text" ng-model="password" id="userPassword"/>
             </br>
             <div class="wrapper">
             <span class="group-btn">     
-                <a href="#" class="btn btn-primary btn-md" ng-click="login()">login <i class="fa fa-sign-in"></i></a>
+                <a href="#" class="btn btn-info btn-md" ng-click="login()">login <i class="fa fa-sign-in"></i></a>
             </span>
             </div>
             </div>
@@ -87,5 +96,10 @@ h4 {
     </div>
    </div> <!-- Login container -->
 </div>
+<script>
+function makePasswordHidden() {
+    document.getElementById("userPassword").setAttribute("type", "password");
+}
+</script>
 </body>
 </html>

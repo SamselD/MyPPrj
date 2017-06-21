@@ -18,6 +18,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 */
 
+import com.ex.DAO.EmployeeDAOImpl;
 import com.google.gson.Gson;
 
 /**
@@ -58,6 +59,10 @@ public class LoginServelet extends HttpServlet {
 			System.out.println("------------------------");
 			
 			//Call the DAO Query
+			Boolean b = EmployeeDAOImpl.GetUserInfo(username,password);
+			if(b.equals("TRUE")){
+				System.out.println("****  USER FOUND  ****");
+			}
 			
 			//Return from DAO will have following info NOTE: CURRENTLY HARDCODED
 			Map<String,Object> rObj= new HashMap();

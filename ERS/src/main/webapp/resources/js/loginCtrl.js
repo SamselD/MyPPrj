@@ -34,6 +34,12 @@ angular.module("ERSapp",[]).controller("ERSLoginCtrl", function($scope, $http) {
           
           })
         }
+    
+    $scope.curCmd="";
+    $scope.command= function(cmdName){
+    	$scope.curCmd = cmdName;
+    }
+    
 }); //end login controller
 
 function makeUser($scope) {
