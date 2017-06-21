@@ -33,7 +33,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public static Boolean GetUserInfo(String username, String password){
 		try (Connection con= com.ex.utils.JdbcDriver.connect();){
 			
-			String sql = "Select username from Users where username=? AND pwd=?";
+			String sql = "Select username from employees where username=? AND password=?";
 			PreparedStatement pStat = con.prepareCall(sql);
 			pStat.setString(1,username);
 			pStat.setString(2,password);

@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 /*
 import org.json.simple.JSONArray;
@@ -67,6 +69,14 @@ public class LoginServelet extends HttpServlet {
 			//Return from DAO will have following info NOTE: CURRENTLY HARDCODED
 			Map<String,Object> rObj= new HashMap();
 			rObj.put("ROLE", "Employee");
+			
+			String user="";
+			String userid="";
+			HttpSession s=request.getSession();
+			s.setAttribute("username",username);
+			s.setAttribute("password",password);
+			s.setAttribute("user",user);
+			s.setAttribute("userid",userid);
 			
 			String json = new Gson().toJson(rObj);
 			System.out.println("RETUREn : "+json);

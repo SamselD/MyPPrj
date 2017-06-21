@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<html lang="en" ng-app="EmpApp">
 <head>
 
     <meta charset="utf-8">
@@ -34,6 +34,10 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-animate.js"></script>
+    <script src="resources/js/EmpCtrl.js"></script>
 
 <style>
 .modal-title {
@@ -62,7 +66,7 @@
 </style>
 </head>
 
-<body id="page-top">
+<body id="page-top" ng-controller="EmpCtrl">
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -124,7 +128,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                      <a href="#States" data-toggle="modal" data-target="#States" class="page-scroll btn btn-default btn-xl sr-button">
+                      <a href="#result" ng-click="command('all')" class="page-scroll btn btn-default btn-xl sr-button"">
                         <i class="fa fa-4x fa-files-o text-primary sr-icons"></i></a>
                         <h3>View</h3>
                         <p class="text-muted">View All Reimbursements</p>
@@ -132,7 +136,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                      <a href="#States" data-toggle="modal" data-target="#States" class="page-scroll btn btn-default btn-xl sr-button">
+                      <a href="#result" ng-click="command('user')" class="page-scroll btn btn-default btn-xl sr-button"">
                         <i class="fa fa-4x fa-user text-primary sr-icons"></i></a>
                         <h3>Profile</h3>
                         <p class="text-muted">Edit or View User Information</p>
@@ -142,18 +146,92 @@
         </div>
     </section>
 
-   
-    <!--aside class="bg-dark">
-        <div class="container text-center">
-            <div class="call-to-action">
-                <h2>Free Download Images!</h2>
-                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>
-            </div>
-        </div>
-    </aside-->
     
     <section id="result" style="display:none">
         <div class="container">
+        <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Forms</h2>
+                    <hr class="primary">
+                </div>
+        </div>
+        <div class="row" id="form_default" style="display:none">
+                <div class="col-lg-12 text-center">
+                    <h4 class="section-heading">-------NONE------</h2>
+                </div>
+        </div>
+        
+        <div  class="row text-center col-lg-8 col-lg-offset-2" id="form_new" style="display:none">
+	        <form>
+				<div class = "form-group">
+					<label for="usr">User Name</label>
+					<input type="text" class="form-control" id="uFame" />
+				</div>
+				
+				<div class = "form-group">
+					<label for="usr">User ID</label>
+					<input type="text" class="form-control" id="desig"/>
+				</div>
+				
+				<div class="form-group" id="dsel">
+				  <label for="sel1">Reimbursement-Type:</label>
+				  <select class="form-control" id="sel1">
+				    <option>---Choose---</option>
+				    <option ng-repeat="opt in  reimburseOptions">{{opt}}</option>
+				  </select>
+				</div>
+				
+				<div class = "form-group">
+					<label for="usr">Amount</label>
+					<input type="text" class="form-control" id="amt"/>
+				</div>
+				
+				<div class = "form-group">
+					<label for="usr">Reciept</label>
+					<input type="text" class="form-control" id="reciept"/>
+				</div>
+				
+				<div class="form-group" id="AC">
+		  			<label for="comment">Comments:</label>
+		  			<textarea class="form-control" rows="5" id="Comment"></textarea>
+				</div>
+				
+				<a href="#services" ng-click="submitForm()" class="page-scroll btn btn-default btn-xl sr-button">
+				<i class="fa fa-2x fa-exchange text-primary sr-icons"></i></a>
+				
+			</form>
+		</div>
+	
+	 	<div  class="row text-center col-lg-8 col-lg-offset-2" id="form_all" style="display:none">
+		</div>
+		
+		<div  class="row text-center col-lg-8 col-lg-offset-2" id="form_user" style="display:none">
+			<form>
+		 		<div class = "form-group">
+						<label for="usr">Username</label>
+						<input type="text" class="form-control" id="username" ng-model="Username" value={{Username}}/>
+				</div>
+				
+				<div class = "form-group">
+						<label for="usr">Old Password</label>
+						<input type="text" class="form-control" id="password" ng-model="Password" value={{Password}}/>
+				</div>
+				
+				<div class = "form-group">
+						<label for="password">New Password</label>
+						<input type="password" class="form-control" id="newPwd" ng-model="newPwd"/>
+				</div>
+				
+				<div class = "form-group">
+						<label for="password">Confirm New Password</label>
+						<input type="password" class="form-control" id="newPwdConfirm" ng-model="newPwdConfirm"/>
+				</div>
+				
+				<a href="#services" ng-click="submitProfile()" class="page-scroll btn btn-default btn-xl sr-button">
+					<i class="fa fa-2x fa-exchange text-primary sr-icons"></i></a>
+			</form>
+		</div>
+			
         </div>
     </section>
 
@@ -191,34 +269,8 @@
     <!-- Theme JavaScript -->
     <script src="resources/js/creative.min.js"></script>
 
-    <!-- ------------ -->
-		<!-- Submit Modal -->
-		<!-- ------------ -->
-		<div id="States" class="modal">
-			<div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Search</h4>
-        </div>
-        <div class="modal-body">
-  				<!--div class="text-center">
-  					<i class="fa fa-cog fa-spin" style="font-size:24px;color:#ef5c1e;vertical-align:top;"></i>
-  					<i class="fa fa-cog fa-spin" style="font-size:48px;color:#f26925;"></i>
-  					<i class="fa fa-cog fa-spin" style="font-size:36px;color:#ef5c1e;vertical-align:top;"></i>
-      		</div-->
-          <div class="row">
-            <div class="form-group">
-  					
-          </div>
-          <p id="modal-footer"><br/><hr/>
-            Thank you for selecting our service.</p>
-        </div>
-			</div>
-		</div>
 <script>
-$("#search").click(function(){
-console.log("Modal View");
-});
+
 </script>
 </body>
 
