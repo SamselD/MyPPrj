@@ -21,6 +21,7 @@ import org.json.simple.parser.ParseException;
 */
 
 import com.ex.DAO.EmployeeDAOImpl;
+import com.ex.model.Employees;
 import com.google.gson.Gson;
 
 /**
@@ -61,17 +62,27 @@ public class LoginServelet extends HttpServlet {
 			System.out.println("------------------------");
 			
 			//Call the DAO Query
-			Boolean b = EmployeeDAOImpl.GetUserInfo(username,password);
-			if(b.equals("TRUE")){
+			Employees employee = new EmployeeDAOImpl().getUserInfo(username,password);
+			String user="";
+			String userid="";
+			String role = "";
+			if(employee != null){
 				System.out.println("****  USER FOUND  ****");
+				user = employee.getFirstName();
+				userid = Integer.toString(employee.getEmployeeId());
+				if(employee.getRoleId() == 1){
+					role = "Manager";
+				}else{
+					role = "Employee";
+				}
+				
 			}
 			
 			//Return from DAO will have following info NOTE: CURRENTLY HARDCODED
 			Map<String,Object> rObj= new HashMap();
-			rObj.put("ROLE", "Employee");
+			rObj.put("ROLE", role);
 			
-			String user="";
-			String userid="";
+			
 			HttpSession s=request.getSession();
 			s.setAttribute("username",username);
 			s.setAttribute("password",password);
@@ -84,6 +95,7 @@ public class LoginServelet extends HttpServlet {
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
 			
+		    System.out.println("UserID : "+userid);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,15 +1,21 @@
 package com.ex.DAO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ex.model.Reimbursement;
+import com.ex.model.ReimbursementType;
+import com.ex.model.Status;
 
 public interface ReimbursementDAO {
 	
 	public boolean save(Reimbursement reimbursement);
 	public boolean update(Reimbursement reimbursement);
-	public void delete(Reimbursement reimbursement);
-	public void findReimbursementbyId (int id);
-	public void findReimbursementbyManagerId(int managerId);
-	public void findReimbursementbyEmployeeId(int employeeId);
-	public void findReimbursementbyStatusId(int statusId);
-
-}
+	public ArrayList<Reimbursement> findReimbursementbyManagerId(int managerId);
+	public ArrayList<Reimbursement> findReimbursementbyEmployeeId(int employeeId);
+	public ArrayList<Reimbursement> findReimbursementbyStatusId(String statusId);
+	
+	public List<ReimbursementType> findReimbursementValues();
+	public int findReimbursementTypeId(String typeValue);
+	public int findStatusId(String statustValue);
+}  

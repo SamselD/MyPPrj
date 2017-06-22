@@ -3,6 +3,7 @@ package com.ex.mainimpl;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -31,21 +32,29 @@ public class TestMain {
 			e.printStackTrace();
 		}
 		// TODO Auto-generated method stub
-		Reimbursement rForm = new Reimbursement(0,
-												1,
-												126, 
-												SubmitDate,
-												444,
-												"Rainer",
-												"Dsouza",
-												128,
-												SubmitDate,
-												444,
-												3);
+//		Reimbursement rForm = new Reimbursement(0,
+//												1,
+//												126, 
+//												SubmitDate,
+//												444,
+//												"Rainer",
+//												"Dsouza",
+//												128,
+//												SubmitDate,
+//												"Approved",
+//												"Hotel");
 		
 		ReimbursementDAOImpl rDAO = new ReimbursementDAOImpl();
-		rDAO.save(rForm);
+		//rDAO.save(rForm);
 		//rDAO.update(rForm);
+		ArrayList<Reimbursement> rlist = rDAO.findReimbursementbyEmployeeId(126);
+		for (Reimbursement r :rlist ){
+			
+		System.out.println("ID " +r.getEmployeeId());
+			
+		}
+		
+		
 	}
 
 }

@@ -9,7 +9,6 @@ import java.util.Date;
 public class Reimbursement {
 
 		private int reimbursementId;
-		private int statusId;
 		private int employeeId;
 		private Date dateSubmitted;
 		private int amount;
@@ -18,17 +17,18 @@ public class Reimbursement {
 		private int managerId;
 		private Date dateResolved;
 		private int resolvedAmount;
-		private int reimbursementTypeId;
+		private String statusValue;
+		private String reimbursementTypeName;
 		
 		public Reimbursement(){	
 		}
 		
-		public Reimbursement(int reimbursementId, int statusId, int employeeId, Date dateSubmitted, int amount,
+		public Reimbursement(int reimbursementId, String statusValue, int employeeId, Date dateSubmitted, int amount,
 				String receipt, String comments, int managerId, Date dateResolved, int resolvedAmount,
-				int reimbursementTypeId) {
+				String reimbursementTypeName) {
 			super();
 			this.reimbursementId = reimbursementId;
-			this.statusId = statusId;
+			this.statusValue = statusValue;
 			this.employeeId = employeeId;
 			this.dateSubmitted = dateSubmitted;
 			this.amount = amount;
@@ -37,7 +37,7 @@ public class Reimbursement {
 			this.managerId = managerId;
 			this.dateResolved = dateResolved;
 			this.resolvedAmount = resolvedAmount;
-			this.reimbursementTypeId = reimbursementTypeId;
+			this.reimbursementTypeName = reimbursementTypeName;
 		}
 		
 		public int getReimbursementId() {
@@ -46,12 +46,7 @@ public class Reimbursement {
 		public void setReimbursementId(int reimbursementId) {
 			this.reimbursementId = reimbursementId;
 		}
-		public int getStatusId() {
-			return statusId;
-		}
-		public void setStatusId(int statusId) {
-			this.statusId = statusId;
-		}
+		
 		public int getEmployeeId() {
 			return employeeId;
 		}
@@ -95,16 +90,30 @@ public class Reimbursement {
 		public void setResolvedAmount(int resolvedAmount) {
 			this.resolvedAmount = resolvedAmount;
 		}
-		public int getReimbursementTypeId() {
-			return reimbursementTypeId;
-		}
-		public void setReimbursementTypeId(int reimbursementTypeId) {
-			this.reimbursementTypeId = reimbursementTypeId;
-		}
+		
 		public String getComments() {
 			return comments;
 		}
 		public void setComments(String comments) {
 			this.comments = comments;
 		}
+
+		public String getStatusValue() {
+			return statusValue;
+		}
+
+		public void setStatusValue(String statusValue) {
+			this.statusValue = statusValue;
+		}
+
+		public String getReimbursementTypeName() {
+			return reimbursementTypeName;
+		}
+
+		public void setReimbursementTypeName(String reimbursementTypeName) {
+			this.reimbursementTypeName = reimbursementTypeName;
+		}
+		
+		
+		
   }
